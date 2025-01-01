@@ -27,7 +27,6 @@ class UserAccount(db.Model):
             "bubbles": self.num_of_taps,
         }
 
-
 class Taps(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
