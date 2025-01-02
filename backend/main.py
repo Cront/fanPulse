@@ -73,7 +73,15 @@ def add_taps():
     except Exception as e:
         return jsonify({"Error" : str(e)}), 400
 
-    return jsonify({"Message" : "Tap entered"}), 201
+    return jsonify({
+        "Message" : "Tap entered",
+        "Tap" : new_tap.to_json(),
+        "Team Scores" : team_scores
+    }), 201
+
+@app.route("/get_scores", methods=["GET"])
+def get_team_scores():
+    return jsonify(team_scores) 
 
 if __name__ == '__main__':
     with app.app_context():
