@@ -1,7 +1,6 @@
 from config import db
 from config import bcrypt
 
-
 class UserAccount(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
@@ -9,7 +8,7 @@ class UserAccount(db.Model):
     last_name = db.Column(db.String(80), unique=False, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(255), unique=False, nullable=False)
-    taps = db.relationship("Tap", backref="user", lazy=True)
+    taps = db.relationship("Taps", backref="user", lazy=True)
 
     def set_password(self, raw_pw):
         self.password = bcrypt.generate_password_hash(raw_pw).decode("utf-8")

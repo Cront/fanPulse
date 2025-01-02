@@ -18,7 +18,7 @@ def get_all_taps():
     return jsonify({"taps": json_taps})
 
 @app.route("/taps_data", methods=["GET"])
-def get_taps_data(*args):
+def get_taps_data():
     user_id = request.args.get("user_id")
     
     # if no user_id provided, output all user_ids
@@ -30,9 +30,16 @@ def get_taps_data(*args):
 
         json_taps = [tap.to_json() for tap in taps]
         return jsonify({"taps": json_taps})
+    # one user
     else:
         tap = Taps.query.get(user_id)
         print(f"User:{tap.user_id}, Team: {tap.team_id}, Timestamp: {tap.timestamp}")
 
         json_tap = tap.to_json()
         return jsonify({"tap": json_tap})
+
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
+    
+    app.run(debug=True)
