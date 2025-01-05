@@ -2,21 +2,29 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
-  const [taps, setTaps] = useState([]);
+  const handleTap = async (userId, teamId) => {
+    try {
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ user_id: userId, team_id: teamId }),
+      };
 
-  useEffect(() => {
-    fetchTaps();
-  }, []);
+      const response = await fetch("http://127.0.0.1:5000/taps_add", options);
 
-  const fetchTaps = async () => {
-    const response = await fetch("http://127.0.0.1:5000/taps_data");
-    const data = await response.json();
-    setTaps(data.taps);
-    console.log(data.taps);
+      if (response.ok) {
+        onTap();
+      } else {
+        console.error("Failed to update tap count");
+      }
+    } catch (error) {
+      alert(error);
+    }
   };
 
   return <></>;
 }
 
 export default App;
-
