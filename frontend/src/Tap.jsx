@@ -1,6 +1,6 @@
 import React from "react";
 
-const TapList = ({ taps, updateTap }) => {
+const TapList = ({ taps, handleTap }) => {
   return (
     <div>
       <h2>Taps</h2>
@@ -14,9 +14,9 @@ const TapList = ({ taps, updateTap }) => {
         </thead>
         <tbody>
           {taps.map((tap) => (
-            <tr key={taps.user_id}>
-              <td>{taps.team_id}</td>
-              <td>{new Date(tap.timestamp).toLocalString()}</td>
+            <tr key={tap.user_id}>
+              <td>{tap.team_id}</td>
+              <td>{new Date(tap.timestamp).toLocaleString()}</td>
               <td>
                 <button onClick={() => handleTap(tap.user_id, tap.team_id)}>
                   Tap

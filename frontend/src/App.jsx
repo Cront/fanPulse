@@ -9,9 +9,9 @@ function App() {
   // Fetch taps data from backend
   const fetchTaps = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:5000/taps_data", options);
+      const response = await fetch("http://127.0.0.1:5000/taps_data");
       if (response.ok) {
-        const data = await response.join();
+        const data = await response.json();
         setTaps(data.taps); // backened should return { taps: [...]}
       } else {
         console.error("Failed to fetch taps data");
