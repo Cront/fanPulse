@@ -5,8 +5,8 @@ from datetime import datetime
 
 # basic implementation team scores dict (WILL REMOVE)
 team_scores = {
-    "team 1": 0,
-    "team 2": 0
+    "team_1": 0,
+    "team_2": 0
 }
 
 
@@ -74,7 +74,7 @@ def add_taps():
         return jsonify({"Error": "Invalid entry for Team ID"})
 
     # update teams tap counter
-    team_scores[f"team {team_id}"] += 1
+    team_scores[f"team_{team_id}"] += 1
 
     # add users tap to database
     new_tap = Taps(user_id=user_id, team_id=team_id, timestamp=datetime.now())

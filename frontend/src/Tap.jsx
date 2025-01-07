@@ -1,15 +1,12 @@
 import React from "react";
 
 const TapList = ({ taps, updateTap }) => {
-  const onDelete = async (id) => {
+  const onTap = async (id) => {
     try {
       const options = {
-        method: "DELETE",
+        method: "POST",
       };
-      const response = await fetch(
-        `http://127.0.0.1:5000/delete_contact/${id}`,
-        options,
-      );
+      const response = await fetch(`http://127.0.0.1:5000/taps_add`, options);
       if (response.status === 200) {
         updateCallback();
       } else {
@@ -24,14 +21,14 @@ const TapList = ({ taps, updateTap }) => {
     <div>
       <h2>Taps</h2>
       <table>
-        <thead>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
+        {/* <thead> */}
+        {/*   <tr> */}
+        {/*     <th>First Name</th> */}
+        {/*     <th>Last Name</th> */}
+        {/*     <th>Email</th> */}
+        {/*     <th>Actions</th> */}
+        {/*   </tr> */}
+        {/* </thead> */}
         <tbody>
           {taps.map((tap) => (
             <tr key={taps.user_id}>
@@ -50,4 +47,3 @@ const TapList = ({ taps, updateTap }) => {
 };
 
 export default ContactList;
-
